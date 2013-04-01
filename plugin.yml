@@ -1,0 +1,26 @@
+name: Tele Me There
+main: me.lion.teleportation.TeleMeThere
+version: 1.1
+description: A plugin that allows players to save locations and teleport to them!
+author: LionOfGod
+loadbefore: [SQLibrary]
+commands: 
+  tele set:
+    description: Save a location. Only 10 locations can be saved.
+    usage: /tele set TalhasDiamondMine
+  tele:
+    description: Teleport to specified location.
+  tele list:
+    description: List all saved locations.
+  tele rename:
+    description: Rename a saved location.
+    usage: /tele rename JustinsHouse JustinsMansion
+  tele update:
+    description: Update a saved location to new coordinates.
+    usage: /tele update base
+  tele del:
+    description: Delete a saved location.
+    usage: /tele del Tahashome
+  tele reset:
+    description: Delete all saved locations.
+    usage: /tele reset
