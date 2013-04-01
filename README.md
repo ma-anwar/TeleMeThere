@@ -20,7 +20,7 @@ This plugin uses a lightweight sqlite database to save and store all player loca
 Installation
 ------------
 
-1. Go to the Jars directory and download the jar file from there called TeleMeThere.jar.
+1. I am waiting to get a Bukkit-dev page....
 2. This plugin uses another library to use sqlite databases. This library was created by PatPeter.
 You need to download it's Jar file from [here] (http://dev.bukkit.org/server-mods/sqlibrary/files/5-sqlibrary-4-2/).
 His Github can be found [here](https://github.com/PatPeter/SQLibrary) and he also has a [Bukkit-Dev page](http://dev.bukkit.org/server-mods/sqlibrary/).
@@ -53,4 +53,5 @@ In the future I want to implement more features that admins can use, some featur
 ###Help
 
 I would really appreciate it if I could get some feedback about my code or stuff I should implement : D
+it would be awesome if I could get help implementing new features : )
 
