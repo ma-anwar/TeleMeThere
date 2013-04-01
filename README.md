@@ -27,7 +27,7 @@ His Github can be found [here](https://github.com/PatPeter/SQLibrary) and he als
 3. Now just take these Jar files and drop them into your plugins directory. A database will automatically be created once the plugin is run.
 4. Enjoy and give me feedback!
 
-Notes
+Other Stuff
 ------
 
 ###Commands and Usage
@@ -42,3 +42,15 @@ All of the commands that can be used are listed here...
 * /tele update <location> "Updates a location to new coordinates, e.g. /tele update mybase"
 * /tele del <location> "Delete a saved location e.g. /tele del mybase"
 * /tele reset "Remove all saved locations"
+
+###Future Features
+In the future I want to implement more features that admins can use, some features that I can think of right now are...
+
+* Managing which players can use the plugin
+* Removing player tables
+* Configuring how many locations can be saved
+
+###Help
+
+I would really appreciate it if I could get some feedback about my code or stuff I should implement : D
+
