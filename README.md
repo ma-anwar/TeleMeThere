@@ -49,6 +49,7 @@ In the future I want to implement more features that admins can use, some featur
 * Managing which players can use the plugin
 * Removing player tables
 * Configuring how many locations can be saved
+* Make sure dependency on sqLibrary is met
 
 ###Help
 
