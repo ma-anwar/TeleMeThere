@@ -36,11 +36,11 @@ To use this plugin simply go stand somewhere and save a location. You can now te
 All of the commands that can be used are listed here...
 
 * /tele set \<location> "Saves a location, e.g. /tele set mybase"
-* /tele <location> "Teleports player to a saved location e.g. /tele mybase"
+* /tele \<location> "Teleports player to a saved location e.g. /tele mybase"
 * /tele list "Lists all saved locations"
-* /tele rename <oldLocation> <newLocation> "Renames a saved location e.g. /tele rename mybase skyPalace"
-* /tele update <location> "Updates a location to new coordinates, e.g. /tele update mybase"
-* /tele del <location> "Delete a saved location e.g. /tele del mybase"
+* /tele rename \<oldLocation> <newLocation> "Renames a saved location e.g. /tele rename mybase skyPalace"
+* /tele update \<location> "Updates a location to new coordinates, e.g. /tele update mybase"
+* /tele del \<location> "Delete a saved location e.g. /tele del mybase"
 * /tele reset "Remove all saved locations"
 
 ###Future Features
