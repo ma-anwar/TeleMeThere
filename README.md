@@ -52,6 +52,7 @@ In the future I want to implement more features that admins can use, some featur
 
 ###Help
 
-I would really appreciate it if I could get some feedback about my code or stuff I should implement : D\\
-it would be awesome if I could get help implementing new features : )
+I would really appreciate it if I could get some feedback about my code or stuff I should implement : D
+
+It would be awesome if I could get help implementing new features : )
 
