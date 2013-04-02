@@ -35,7 +35,7 @@ Other Stuff
 To use this plugin simply go stand somewhere and save a location. You can now teleport to this location using the name you saved!
 All of the commands that can be used are listed here...
 
-* /tele set <location> "Saves a location, e.g. /tele set mybase"
+* /tele set \<location> "Saves a location, e.g. /tele set mybase"
 * /tele <location> "Teleports player to a saved location e.g. /tele mybase"
 * /tele list "Lists all saved locations"
 * /tele rename <oldLocation> <newLocation> "Renames a saved location e.g. /tele rename mybase skyPalace"
