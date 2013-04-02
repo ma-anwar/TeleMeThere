@@ -3,6 +3,7 @@ main: com.github.lionofgod.TeleMeThere
 version: 1.1
 description: A plugin that allows players to save locations and teleport to them!
 author: LionOfGod
+depends: [SQLibrary]
 loadbefore: [SQLibrary]
 commands: 
   tele set:
