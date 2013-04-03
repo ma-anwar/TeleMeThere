@@ -113,45 +113,21 @@ public class sqlFuncs {
 	public int [] sqlGetCords(String tableName, String location){
 		//Function responsible for retrieving a player's saved coordinates from the database
 		//Returns an integer array containing the coordinates
-		//TODO: Query database for all coords in one query
 		int cords [] = {0 , 0 ,0}; // Initialize array to hold coordinates retrieved from table
-		
+		String [] cordNames = {"cordx", "cordy", "cordz"}; //Initialize array to hold names of columns that will be retrieved
 		try {
-			ResultSet rsx = sqlite.query("SELECT cordx FROM " + tableName + " where location = '" + location +"';"); // Retrieve x coordinate and put it in result set
-			if (rsx.next()){
-				try { cords[0] = rsx.getInt("cordx"); // Get coordinate from result set add to array
-				} catch (SQLException e){
+			ResultSet rs = sqlite.query("SELECT cordx, cordy, cordz FROM " + tableName + " where location = '" + location +"';"); // Retrieve x coordinate and put it in result set
+			if (rs.next()){
+				for (int x = 0; x<=2; x++){
+					try { cords[x] = rs.getInt(cordNames[x]); // Get coordinate from result set add to array
+					} catch (SQLException e) {
 					e.printStackTrace();
+					}
 				}
 			}
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		try {
-			ResultSet rsy = sqlite.query("SELECT cordy FROM " + tableName + " where location = '" + location +"';" ); // Retrieve y coordinate and put it in result set
-			if (rsy.next()){
-				try { cords[1] = rsy.getInt("cordy"); // Get coordinate from result set add to array
-				} catch (SQLException e){
-					e.printStackTrace();
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			ResultSet rsz = sqlite.query("SELECT cordz FROM " + tableName + " where location= '" + location +"';"); // Retrieve z coordinate and put it in result set
-			if (rsz.next()){
-				try { cords[2] = rsz.getInt("cordz"); // Get coordinate from result set add to array
-				} catch (SQLException e){
-					e.printStackTrace();
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
 		return cords; // Return array holding coordinates of location that player requested
 		
 	}
