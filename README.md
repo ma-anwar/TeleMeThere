@@ -20,7 +20,7 @@ This plugin uses a lightweight sqlite database to save and store all player loca
 Installation
 ------------
 
-1. I am waiting to get a Bukkit-dev page....
+1. Head over to my [bukkit-dev](http://dev.bukkit.org/server-mods/tele-me-there/) page and [download](http://dev.bukkit.org/server-mods/tele-me-there/files/) the latest jar file for my plugin.
 2. This plugin uses another library to use sqlite databases. This library was created by PatPeter.
 You need to download it's Jar file from [here] (http://dev.bukkit.org/server-mods/sqlibrary/files/5-sqlibrary-4-2/).
 His Github can be found [here](https://github.com/PatPeter/SQLibrary) and he also has a [Bukkit-Dev page](http://dev.bukkit.org/server-mods/sqlibrary/).
