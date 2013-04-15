@@ -17,18 +17,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TeleMeThere extends JavaPlugin {
 	/*TODO: Stuff to be implemeneted
 	 *  - More admin features
+	 *  	-Wipe database
 	 *  	-Delete a players table
-	 *  	-Permissions for which player can use the plugin?
-	 *  		-Have a table with list of eligible players to use plugin
-	 *  		-Add, delete functionality for table
-	 *  	-Change the number of max allowed saved locations
-	 *  	-Allow admin functions to be run straight from console
+	 *  	-Have a table with list of eligible players to use plugin?
+	 *  	-Add, delete functionality for table?
+	 *  	-Change the number of max allowed saved locations?
 	 *  -Get sql functions to check if locations are valid or exist etc?
+	 *  -Allow players to share locations
 	 */
 	public final Logger logger = Logger.getLogger("Minecraft"); // Get logger object
 	public static TeleMeThere plugin;
 	sqlFuncs sqlDb; // This variable will be used to access sqlFuncs class
-	public static boolean onlyOP = true; 
+	public static boolean onlyOP = true; //This variable maintains whether the plugin can only be used by operators
 
 	
 	@Override
@@ -47,25 +47,31 @@ public class TeleMeThere extends JavaPlugin {
 	}
 	
 	public void setOnlyOP(boolean onlyOP){
+		//This function is responsible for updating the onlyOP variable
 		if(TeleMeThere.onlyOP != onlyOP){
 			TeleMeThere.onlyOP = onlyOP;
 		}
 	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String args[]) {
 		if(commandLabel.equalsIgnoreCase("teleadmin")){
+			//Commands for OP's
 			if (sender.isOp() || sender instanceof ConsoleCommandSender){
 				if(args.length == 0){
+					//Display usage of commands
 					sender.sendMessage(ChatColor.GREEN + "\nTele Me There!\nAdmin Commands\nUsage: /teleadmin setusage op \"Set plugin to allow only operator use\"" +
 							"\n/teleadmin setusage everyone \"Set plugin to allow everyone to use it\"");
 					return true;
 				}
 				if(args.length == 2 && args[0].equalsIgnoreCase("setusage")){
+					//Set plugin usage
 					if(args[1].equalsIgnoreCase("op")){
+						//Plugin can only be used by ops
 						setOnlyOP(true);
 						sender.sendMessage(ChatColor.GREEN +"Plugin has been set to OP use only!");
 						return true;
 					}
 					else if(args[1].equalsIgnoreCase("everyone")){
+						//Plugin can be used by everyone
 						setOnlyOP(false);
 						sender.sendMessage(ChatColor.GREEN + "Everyone can use the plugin now!");
 						return true;
@@ -77,6 +83,7 @@ public class TeleMeThere extends JavaPlugin {
 				}
 				
 			}else{
+				//If sender is not op, then error
 				sender.sendMessage(ChatColor.RED + "This command is not available to you!");
 			}
 		}
