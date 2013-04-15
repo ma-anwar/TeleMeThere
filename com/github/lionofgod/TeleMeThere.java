@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,7 +35,8 @@ public class TeleMeThere extends JavaPlugin {
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() + " Has been enabled!" );
 		sqlDb = new sqlFuncs(plugin, this.logger, "TeleMeThere",this.getDataFolder().getAbsolutePath(),"Teleportation", ".sqlite");
-
+		this.saveDefaultConfig();//Save the default config if a config.yml file is not already present
+		TeleMeThere.onlyOP =  TeleMeThere.this.getConfig().getBoolean("onlyOP");
 		
 	}
 	
@@ -46,52 +46,14 @@ public class TeleMeThere extends JavaPlugin {
 		sqlDb.closeConnection();
 	}
 	
-	public void setOnlyOP(boolean onlyOP){
-		//This function is responsible for updating the onlyOP variable
-		if(TeleMeThere.onlyOP != onlyOP){
-			TeleMeThere.onlyOP = onlyOP;
-		}
-	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String args[]) {
-		if(commandLabel.equalsIgnoreCase("teleadmin")){
-			//Commands for OP's
-			if (sender.isOp() || sender instanceof ConsoleCommandSender){
-				if(args.length == 0){
-					//Display usage of commands
-					sender.sendMessage(ChatColor.GREEN + "\nTele Me There!\nAdmin Commands\nUsage: /teleadmin setusage op \"Set plugin to allow only operator use\"" +
-							"\n/teleadmin setusage everyone \"Set plugin to allow everyone to use it\"");
-					return true;
-				}
-				if(args.length == 2 && args[0].equalsIgnoreCase("setusage")){
-					//Set plugin usage
-					if(args[1].equalsIgnoreCase("op")){
-						//Plugin can only be used by ops
-						setOnlyOP(true);
-						sender.sendMessage(ChatColor.GREEN +"Plugin has been set to OP use only!");
-						return true;
-					}
-					else if(args[1].equalsIgnoreCase("everyone")){
-						//Plugin can be used by everyone
-						setOnlyOP(false);
-						sender.sendMessage(ChatColor.GREEN + "Everyone can use the plugin now!");
-						return true;
-					}
-					else{
-						sender.sendMessage(ChatColor.RED + "Invalid use of command");
-						return true;
-					}
-				}
-				
-			}else{
-				//If sender is not op, then error
-				sender.sendMessage(ChatColor.RED + "This command is not available to you!");
-			}
-		}
-		//Make sure that the command sender is a player
+
+		//Check if only OP's are allowed to use plugin
 		if(onlyOP && !(sender.isOp())){
 			sender.sendMessage(ChatColor.RED + "This command is not available to you!");
 			return false;
 		}
+		//Make sure that the command sender is a player
 		if(!(sender instanceof Player)){
 			sender.sendMessage("These commands are meant to be run as a player!");
 			return true;
