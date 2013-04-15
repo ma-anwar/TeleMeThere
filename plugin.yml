@@ -5,6 +5,11 @@ description: A plugin that allows players to save locations and teleport to them
 author: LionOfGod
 loadbefore: [SQLibrary]
 commands: 
+  teleadmin:
+    description: Display help for op functions
+  teleadmin setusage:
+    description: Set who can use the plugin
+    usage: /teleadmin setusage op or /teleadmin setusage everyone
   tele set:
     description: Save a location. Only 10 locations can be saved.
     usage: /tele set TalhasDiamondMine
