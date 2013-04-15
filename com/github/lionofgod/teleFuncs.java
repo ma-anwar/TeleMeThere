@@ -17,7 +17,7 @@ public class teleFuncs {
 	private String [] args;
 	private sqlFuncs sqlDb; // This variable will be used to access sqlFuncs class
 	private String playerName;	
-	private TeleMeThere plugin;
+
 	
 	public teleFuncs(Player player, String[] args, sqlFuncs sqlDb){
 		//Constructor will retrieve variables necessary for interaction with player and DB
@@ -29,7 +29,7 @@ public class teleFuncs {
 	
 	public boolean help(){
 		//Function responsible for explaining commands, returns true
-		player.sendMessage(ChatColor.YELLOW + "Tele Me There! Beta : D");
+		player.sendMessage(ChatColor.YELLOW + "Tele Me There!");
 		player.sendMessage(ChatColor.DARK_GREEN + "Usage: /tele set <location> \"Set a location\" \n/tele <location> \"Teleport to location\" "
 				+ "\n/tele list \"List saved locations\" \n/tele rename <oldLocation> <newLocation> \"Rename a location\""
 				+ "\n/tele update <location> \"Update a location to new coordinates\"\n/tele del <location> \"Remove a saved location\""

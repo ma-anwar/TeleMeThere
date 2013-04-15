@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import lib.PatPeter.SQLibrary.SQLite; //Library created by PatPeter to use databases
 
 public class sqlFuncs {
-	public SQLite sqlite; // Variable to be used to access database
+	private SQLite sqlite; // Variable to be used to access database
 	
 	public sqlFuncs(TeleMeThere plugin, Logger logger, String pluginName,String path, String dbName, String extension){
 		//Function responsible for initializing a connection to database/creating a database
