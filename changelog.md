@@ -1,5 +1,10 @@
 ChangeLog
 =========
+April 12 2013
+-------------
+Added basic admin functionality
+OPs can now set whether the plugin can be used by everyone or just OPs
+
 April 04 2013
 -------------
 Packaged up the code in onCommand() into its own class.
