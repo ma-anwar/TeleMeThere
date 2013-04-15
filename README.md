@@ -43,10 +43,17 @@ All of the commands that can be used are listed here...
 * /tele del \<location> "Delete a saved location e.g. /tele del mybase"
 * /tele reset "Remove all saved locations"
 
+###Configuration
+I made use of the config.yml file for some simple configuration.
+Now, when the plugin runs it will generate a default config.yml file.
+It's pretty barebones right now, but it's self explanatory.
+The onlyOP variable can be set to true if you want only operators to sue the plugin or false if everyone can use the plugin.
+
+
 ###Future Features
 In the future I want to implement more features that admins can use, some features that I can think of right now are...
 
-* Managing which players can use the plugin
+* Wiping the whole database
 * Removing player tables
 * Configuring how many locations can be saved
 * Make sure dependency on sqLibrary is met
