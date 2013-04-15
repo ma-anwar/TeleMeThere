@@ -1,0 +1,3 @@
+#default config.yml
+#Set onlyOP to false if everyone should be allowed to use the plugin
+onlyOP: true 
