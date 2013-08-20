@@ -1,7 +1,8 @@
-TeleMeThere
-===========
+TeleMeThere V1.2
+================
 
 This is a plugin created for Minecraft. This plugin allows for players to save locations and teleport to them easily.
+Update: I just added functionality to allow players to teleport with their mounts. This means that players can teleport while riding horses and their horse will come with them! : D
 
 Features
 -----------
@@ -24,6 +25,7 @@ Installation
 2. This plugin uses another library to use sqlite databases. This library was created by PatPeter.
 You need to download it's Jar file from [here] (http://dev.bukkit.org/server-mods/sqlibrary/files/5-sqlibrary-4-2/).
 His Github can be found [here](https://github.com/PatPeter/SQLibrary) and he also has a [Bukkit-Dev page](http://dev.bukkit.org/server-mods/sqlibrary/).
+The latest version of the plugin is comaptible with SQLibrary 6.0 and 4.0.
 3. Now just take these Jar files and drop them into your plugins directory. A database will automatically be created once the plugin is run.
 4. Enjoy and give me feedback!
 
