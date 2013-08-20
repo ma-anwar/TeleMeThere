@@ -21,7 +21,6 @@ public class TeleMeThere extends JavaPlugin {
 	 *  	-Have a table with list of eligible players to use plugin?
 	 *  	-Add, delete functionality for table?
 	 *  	-Change the number of max allowed saved locations?
-	 *  -Get sql functions to check if locations are valid or exist etc?
 	 *  -Allow players to share locations
 	 */
 	public final Logger logger = Logger.getLogger("Minecraft"); // Get logger object
@@ -89,7 +88,7 @@ public class TeleMeThere extends JavaPlugin {
 				}
 				//Teleport player to location
 				else{
-					player.sendMessage("Hey");
+					//player.sendMessage("Hey");
 					if(tele.tele())
 						return true;
 					else
