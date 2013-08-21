@@ -18,8 +18,7 @@ import org.bukkit.entity.Player;
 public class teleFuncs {
 	private Player player;
 	private String[] args;
-	private sqlFuncs sqlDb; // This variable will be used to access sqlFuncs
-							// class
+	private sqlFuncs sqlDb; // This variable will be used to access sqlFuncs class
 	private String playerName;
 
 	public teleFuncs(Player player, String[] args, sqlFuncs sqlDb) {
@@ -27,8 +26,7 @@ public class teleFuncs {
 		// player and DB
 		this.player = player;// Get player object
 		this.args = args; // Get all arguments passed
-		this.playerName = player.getDisplayName(); // Players name will be used
-													// as table name
+		this.playerName = player.getDisplayName(); // Players name will be used as table name
 		this.sqlDb = sqlDb;// Get db object
 	}
 
@@ -46,8 +44,7 @@ public class teleFuncs {
 	public boolean reset() {
 		// Function responsible for deleteing all saved locations, returns true
 		// on success
-		boolean result = sqlDb.sqlResetTable(playerName); // Call function to
-															// wipe table
+		boolean result = sqlDb.sqlResetTable(playerName); // Call function to wipe table
 		if (result) {
 			player.sendMessage(ChatColor.GREEN + "All locations deleted!");
 			return true;
@@ -58,11 +55,9 @@ public class teleFuncs {
 
 	public boolean list() {
 		// Function responsible for listing all of players saved locations,
-		// returns true
-		ResultSet locations = sqlDb.sqlList(playerName); // Retrieve resultset
-															// containing all
-															// saved locations
-															// from database
+		// Returns true
+		// Retrieve resultset containing all saved locations from database
+		ResultSet locations = sqlDb.sqlList(playerName); 
 		try {
 			locations.next(); // Forward to next location, loop will print first
 								// location twice if I don't do this
@@ -70,17 +65,15 @@ public class teleFuncs {
 			e.printStackTrace();
 		}
 		try {
-			while (!locations.isAfterLast()) { // Make sure cursor is not after
-												// last location
+			//Make sure cursor is not after last location
+			while (!locations.isAfterLast()) { 
 				// First string should be at left side,
 				String message = String.format("%-15s",
-						locations.getString("location")); // Retrieve location
-															// from column
-															// "location"
+						//Retrieve location from column "location"
+						locations.getString("location"));
 				locations.next(); // Go to next row in resultset
-				if (locations.isAfterLast()) { // If the cursor is now after the
-												// last row, send just one
-												// location
+				// If the cursor is now after the last row, send just one location
+				if (locations.isAfterLast()) { 
 					player.sendMessage(ChatColor.YELLOW + message);
 				} else {// Else add next location to message, pad it to the
 						// right and send it to player
@@ -102,20 +95,8 @@ public class teleFuncs {
 		// returns true on success
 		String location = args[0]; // Retrieve name of location that player
 									// would like to set
-		String[] badNames = { "list", "set", "rename", "update", "del", "reset" }; // Make
-																					// sure
-																					// player
-																					// is
-																					// not
-																					// setting
-																					// the
-																					// location
-																					// to
-																					// the
-																					// name
-																					// of
-																					// a
-																					// command
+		String[] badNames = { "list", "set", "rename", "update", "del", "reset" }; 
+		//Make sure the player is not setting the name of a location as a command
 		for (String x : badNames) {
 			if (location.equalsIgnoreCase(x)) {
 				player.sendMessage(ChatColor.RED
@@ -124,11 +105,8 @@ public class teleFuncs {
 								// location name
 			}
 		}
-		boolean exists = sqlDb.sqlCheck(playerName, location); // Check if the
-																// location
-																// already
-																// exists within
-																// the database
+		//Check if the location already exists within the database
+		boolean exists = sqlDb.sqlCheck(playerName, location); 
 		if (!exists) { // If it does not exist, exit
 			player.sendMessage(ChatColor.RED
 					+ "This location has not been set!");
@@ -136,10 +114,8 @@ public class teleFuncs {
 		}
 		int cords[] = { 0, 0, 0 }; // Create new array to hold coordinates from
 									// sqlGetCords function
-		cords = sqlDb.sqlGetCords(playerName, location);// pass sqlGetCords
-														// location that player
-														// wants, playerName =
-														// table name
+		//Pass sqlGetCords location that player wants, playerName = table name
+		cords = sqlDb.sqlGetCords(playerName, location);
 		// tp command is used to teleport player
 		// It was not possible to use api command, player.teleport(), as it
 		// takes a location object retrieved through player.getLocation()
@@ -182,22 +158,16 @@ public class teleFuncs {
 	public boolean set() {
 		// Function responsible for saving a player's location, returns true on
 		// success
-		boolean exists = sqlDb.sqlCheck(playerName, args[1]); // Check if the
-																// player has
-																// already saved
-																// the location
+		//Check if player has already saved the location
+		boolean exists = sqlDb.sqlCheck(playerName, args[1]); 
 		if (exists) {
 			player.sendMessage(ChatColor.RED
 					+ "This location already exists, to rename a location use /tele rename <location> \nTo change the cordinates of a location"
 					+ " type /tele update <location>");
 			return true;
 		}
-		boolean rowLimit = sqlDb.sqlCheckLimit(playerName); // Check if the
-															// player has
-															// exceeded the
-															// number of
-															// locations allowed
-															// to be saved
+		//Check if the player has exceeded the number of locations allowed to be saved
+		boolean rowLimit = sqlDb.sqlCheckLimit(playerName);
 		if (rowLimit) { // If true, exit
 			player.sendMessage(ChatColor.RED
 					+ "You have reach the maxmimum amount of locations saved. \n Please delete a location");
@@ -208,9 +178,8 @@ public class teleFuncs {
 		int locX = playerLoc.getBlockX();
 		int locY = playerLoc.getBlockY();
 		int locZ = playerLoc.getBlockZ();
-		sqlDb.sqlInsert(playerName, args[1], locX, locY, locZ); // Add the
-																// location to
-																// the data base
+		//Add the location to the database
+		sqlDb.sqlInsert(playerName, args[1], locX, locY, locZ); 
 		player.sendMessage(ChatColor.GREEN + "'" + args[1]
 				+ "' has been saved as a location.");
 		return true;
@@ -220,24 +189,16 @@ public class teleFuncs {
 		// Function responsible for updating players saved location to new
 		// coordinates, returns true on success
 		String location = args[1];
-		boolean exists = sqlDb.sqlCheck(playerName, location); // Make sure
-																// location
-																// exists
+		//Make sure the location exists
+		boolean exists = sqlDb.sqlCheck(playerName, location); 
 		if (exists) {
 			Location playerLoc = player.getLocation(); // Get player location
 			int locX = playerLoc.getBlockX(); // Use player location to retrieve
 												// x,y and z coordinates
 			int locY = playerLoc.getBlockY();
 			int locZ = playerLoc.getBlockZ();
-			sqlDb.sqlChangeCords(playerName, location, locX, locY, locZ); // Call
-																			// sqlChangeCords
-																			// to
-																			// update
-																			// the
-																			// location
-																			// to
-																			// new
-																			// coordinates
+			// Call sqlChangeCords to update the new location
+			sqlDb.sqlChangeCords(playerName, location, locX, locY, locZ); 
 			player.sendMessage(ChatColor.GREEN + location
 					+ " has been updated to new coordinates");
 			return true;
@@ -253,17 +214,11 @@ public class teleFuncs {
 		// true on success
 		String oldLocation = args[1];
 		String newLocation = args[2];
-		boolean exists = sqlDb.sqlCheck(playerName, oldLocation); // Make sure
-																	// location
-																	// to be
-																	// renamed
-																	// exists
+		// Make sure location to be renamed exists
+		boolean exists = sqlDb.sqlCheck(playerName, oldLocation); 
 		if (exists) {
-			sqlDb.sqlChangeName(playerName, oldLocation, newLocation);// call
-																		// sqlChangeName
-																		// to
-																		// rename
-																		// location
+			// Call sqlChangeName to rename location
+			sqlDb.sqlChangeName(playerName, oldLocation, newLocation);
 			player.sendMessage(ChatColor.GREEN + oldLocation
 					+ " has been renamed to " + newLocation);
 			return true;
@@ -278,14 +233,10 @@ public class teleFuncs {
 		// Function responsible for deleting a player's saved location, returns
 		// true on success
 		String location = args[1];
-		boolean deleted = sqlDb.sqlDel(playerName, location); // sqlDel checks
-																// if location
-																// is valid or
-																// not, so we
-																// don't have to
-																// call any
-																// checking
-																// methods
+		//sqlDel checks if location is valid or not, so we don't have to call
+		//any checking methods
+		//TODO Make code uniform in terms of who checks what
+		boolean deleted = sqlDb.sqlDel(playerName, location); 
 		if (deleted) {
 			player.sendMessage(ChatColor.GREEN + location
 					+ " has been deleted.");
