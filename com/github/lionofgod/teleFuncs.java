@@ -14,6 +14,7 @@ import org.bukkit.entity.Horse;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
+import org.bukkit.World;
 
 public class teleFuncs {
 	private Player player;
@@ -138,7 +139,7 @@ public class teleFuncs {
 			ride.setPassenger(player);
 			player.sendMessage(ChatColor.GREEN
 					+ "You have been teleported to '" + args[0] + "'.");
-		} else {
+		} else if(player.isInsideVehicle()) {
 			player.sendMessage(ChatColor.RED
 					+ "Please dismount your vehicle and then use this command!"
 					+"\nOn the other hand teleporting while riding horses and pigs"
